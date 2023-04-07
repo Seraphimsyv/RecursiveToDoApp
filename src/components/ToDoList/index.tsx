@@ -6,6 +6,14 @@ import { TaskList, ToDoListProps } from "../../types";
 import { replaceTasks } from "../../utils/replaceTasks";
 import { filterData } from "../../utils/filterData";
 
+/**
+ * React Component - Отрисовка списка задач
+ * Может использоватся как самостоятельный компонент, а также как дочерний
+ * @param {dataList} : TaskList - Список задач
+ * @param {subList} : true | undefiend - Являеется ли список дочерним *NotRequired
+ * @param {parentId} : number - Id задачи которая является родительским компонентом
+ * @param {status} : "toDo" | "inProgress" | "done" - Статус родительской задачи
+ */
 const ToDoList : React.FC<ToDoListProps> = ({ dataList, subList, parentId, status } : ToDoListProps ) => {
   const [data, setData] = useState( dataList );
   const [count, setCount] = useState(0);

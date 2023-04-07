@@ -2,12 +2,18 @@ import * as React from "react";
 import { useState } from "react";
 import { FormProps } from "../../types";
 import { filterData } from "../../utils/filterData";
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
+/**
+ * React Component - Отрисовка формы для создания новых задач
+ * Может использоватся как самостоятельный компонент, а также как дочерний
+ * @param {parentId} : number - Id родительской задачи для создания задач потомков *NotRequired
+ * @param {dataList} : TaskList - Список задач для обновления данных
+ * @param {dataUpdate} : Function - Обновление данных
+ */
 const ToDoForm : React.FC<FormProps> = ({ parentId, dataList, dataUpdate } : FormProps) => {
   const [title, setTitle] = useState("");
   const [description, setDesc] = useState("");

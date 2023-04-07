@@ -6,23 +6,35 @@ import { Content } from "./Content";
 import { TaskProps } from "../../types";
 import { dataTask } from "../../data/tasks";
 import { filterData } from "../../utils/filterData";
-
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 
-const ToDoTask : React.FC<TaskProps> = ({ data, subTask, index, lengthList, handlerDelete, handleMoveUp, handleMoveDown } : TaskProps) => {
+/**
+ * React Component - Отрисовка задачи вместе с другими компонентами 
+ * Может использоватся как самостоятельный компонент, а также как дочерний
+ * @param {data} : Task - Данные задачи
+ * @param {subTask} : true | undefiend - Является ли задача дочерней другой задачи *NotRequired
+ * @param {index} : number - Индекс задачи в дочерном списке *NotRequired
+ * @param {lengthList} : number - Длина дочернего списка *NotRequired
+ * @param {hanlerDelete} : void - Колбек удаления задачи из списка
+ * @param {handlerMoveUp} : void - Перемещение задачи по списку выше
+ * @param {handlerMoveDown} : void - Перемещение задачи по списку вних
+ */
+const ToDoTask : React.FC<TaskProps> = (
+  { data, subTask, index, lengthList, handlerDelete, handleMoveUp, handleMoveDown } : TaskProps
+) => {
   const [collapse, setCollapse] = useState(true);
 
   const HandlerMovement = (moveTo: "up" | "down") => {
-    setCollapse(true);
-
     if (moveTo === "up") {
       handleMoveUp();
     } else {
       handleMoveDown();
     }
+
+    setCollapse(true);
   }
 
   const titleData = {

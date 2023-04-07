@@ -53,10 +53,7 @@ export type {
   TaskTitleProps,
   TaskBarProps,
   TaskHeaderProps,
-
   TaskContentProps,
-
   ToDoListProps,
-
   FormProps
 }

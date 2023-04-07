@@ -13,14 +13,11 @@ import {
 export type { 
   Task,
   TaskList,
-
   TaskProps,
   TaskTitleProps,
   TaskBarProps,
   TaskHeaderProps,
   TaskContentProps,
-  
   ToDoListProps,
-
   FormProps
 }

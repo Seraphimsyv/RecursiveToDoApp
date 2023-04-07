@@ -1,9 +1,13 @@
 import * as React from "react";
 import { TaskTitleProps } from "../../types";
-
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 
+/**
+ * React Component - для отображения заголовка задачи вместе с ее статусом
+ * @param {text} : string - Загаловок задачи
+ * @param {status} : "toDo" | "inProgress" | "done" - Статус задачи
+ */
 const Title : React.FC<TaskTitleProps> = ({ text, status } : TaskTitleProps) => {
   return (
     <>
@@ -24,4 +28,3 @@ const Title : React.FC<TaskTitleProps> = ({ text, status } : TaskTitleProps) => 
 }
 
 export { Title }
-export type { TaskTitleProps }

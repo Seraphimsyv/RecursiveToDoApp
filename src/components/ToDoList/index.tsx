@@ -20,7 +20,7 @@ const ToDoList : React.FC<ToDoListProps> = ({ dataList, subList, parentId, statu
 
   const DeleteFromData = (id: number) => {
     for(let i = 0; i < data.length; i++) {
-      if (data[i].id === id) {
+      if (data[i].id === id || data[i]?.parentId === id) {
         data.splice(i, 1);
       }
     }

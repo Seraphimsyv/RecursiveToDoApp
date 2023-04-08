@@ -12,15 +12,15 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 
 /**
- * React Component - Отрисовка задачи вместе с другими компонентами 
- * Может использоватся как самостоятельный компонент, а также как дочерний
- * @param {data} : Task - Данные задачи
- * @param {subTask} : true | undefiend - Является ли задача дочерней другой задачи *NotRequired
- * @param {index} : number - Индекс задачи в дочерном списке *NotRequired
- * @param {lengthList} : number - Длина дочернего списка *NotRequired
- * @param {hanlerDelete} : void - Колбек удаления задачи из списка
- * @param {handlerMoveUp} : void - Перемещение задачи по списку выше
- * @param {handlerMoveDown} : void - Перемещение задачи по списку вних
+ * React Component - Rendering a task along with other components
+ * Can be used as a standalone component, as well as a child component
+ * @param {data} : Task - Task data
+ * @param {subTask} : true | undefined - Whether the task is a child of another task *NotRequired
+ * @param {index} : number - Index of the task in the child list *NotRequired
+ * @param {lengthList} : number - Length of the child list *NotRequired
+ * @param {hanlerDelete} : void - Callback function for deleting a task from the list
+ * @param {handlerMoveUp} : void - Callback function for moving a task up the list
+ * @param {handlerMoveDown} : void - Callback function for moving a task down the list
  */
 const ToDoTask : React.FC<TaskProps> = (
   { data, subTask, index, lengthList, handlerDelete, handleMoveUp, handleMoveDown } : TaskProps

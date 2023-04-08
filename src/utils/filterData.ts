@@ -1,10 +1,10 @@
 import { Task, TaskList } from "../types"
 
 /**
- * Фильтрация списка задал для отображения в разных местах
- * @param {arr} - Список задач для фильтрации
- * @param {parentId} - Родительский id, если отфильтрованный список будет отображатся как дочерний
- * @returns - Возврат фильтрованного списка
+ * React Component - Filter for displaying task list in different places
+ * @param {arr} - List of tasks to filter
+ * @param {parentId} - Parent id if the filtered list will be displayed as a child
+ * @returns - Returns the filtered list
  */
 const filterData = (arr: TaskList, parentId?: number) => {
   if (parentId) {

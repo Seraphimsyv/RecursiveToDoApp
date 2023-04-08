@@ -7,12 +7,12 @@ import { replaceTasks } from "../../utils/replaceTasks";
 import { filterData } from "../../utils/filterData";
 
 /**
- * React Component - Отрисовка списка задач
- * Может использоватся как самостоятельный компонент, а также как дочерний
- * @param {dataList} : TaskList - Список задач
- * @param {subList} : true | undefiend - Являеется ли список дочерним *NotRequired
- * @param {parentId} : number - Id задачи которая является родительским компонентом
- * @param {status} : "toDo" | "inProgress" | "done" - Статус родительской задачи
+ * React Component - Rendering Task List
+ * Can be used as a standalone component, as well as a child component
+ * @param {dataList}: TaskList - List of tasks
+ * @param {subList}: true | undefined - Is the list a child component *Not Required
+ * @param {parentId}: number - ID of the task that is the parent component
+ * @param {status}: "toDo" | "inProgress" | "done" - Status of the parent task
  */
 const ToDoList : React.FC<ToDoListProps> = ({ dataList, subList, parentId, status } : ToDoListProps ) => {
   const [data, setData] = useState( dataList );
@@ -46,52 +46,30 @@ const ToDoList : React.FC<ToDoListProps> = ({ dataList, subList, parentId, statu
     }
   }
 
+  const newData = parentId ? filterData(data, parentId) : filterData(data)
+
   return (
     <>
-
-      {subList !== undefined ? (
-        <>
-          {status === "done" 
-          ? null : <ToDoForm
-                    parentId={parentId}
-                    dataList={ filterData(data, parentId) }
-                    dataUpdate={UpdateData}
-                  />
-          }
-          {filterData(data, parentId).map((task, key) => (
-            <ToDoTask
-              key={key}
-              data={task}
-              subTask
-              index={key}
-              lengthList={data.length-1}
-              handlerDelete={() => DeleteFromData(task.id)}
-              handleMoveUp={() => UpdateTaskMoveUp(key)}
-              handleMoveDown={() => UpdateTaskMoveDown(key)}
-            />
-          ))}
-        </>
-      ) : (
+      {(
         <>
           <ToDoForm
-            dataList={ filterData(data) }
+            parentId={parentId}
+            dataList={newData}
             dataUpdate={UpdateData}
           />
-          <div id="to_do_task_list">
-            {filterData(data).map((task, key) => (
-              <ToDoTask
-                key={key}
-                data={task}
-                index={key}
-                lengthList={data.length-1}
-                handlerDelete={() => DeleteFromData(task.id)}
-                handleMoveUp={() => UpdateTaskMoveUp(key)}
-                handleMoveDown={() => UpdateTaskMoveDown(key)}
-              />
-            ))}
-          </div>
         </>
       )}
+      {newData.map((task, key) => (
+        <ToDoTask
+          key={key}
+          data={task}
+          index={key}
+          lengthList={newData.length-1}
+          handlerDelete={() => DeleteFromData(task.id)}
+          handleMoveUp={() => UpdateTaskMoveUp(key)}
+          handleMoveDown={() => UpdateTaskMoveDown(key)}
+        />
+      ))}
     </>
   )
 }

@@ -8,14 +8,14 @@ import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 import VerticalAlignBottomIcon from '@mui/icons-material/VerticalAlignBottom';
 
 /**
- * React Component - Отрисовка бара для компонента ToDoTask
- * @param {id} : number - Id задачи
- * @param {subTask} : true | undefuined - Являеется ли задача доерней *NotRequired
- * @param {index} : number - Индекс задачи в дочерном списке *NotRequired
- * @param {lengthList} : number - Длина дочернего списка *NotRequired
- * @param {hanlerDelete} : void - Колбек удаления задачи из списка
- * @param {handlerMoveUp} : void - Перемещение задачи по списку выше
- * @param {handlerMoveDown} : void - Перемещение задачи по списку вних
+ * React Component - Rendering a Bar for the ToDoTask Component
+ * @param {id}: number - ID of the task
+ * @param {subTask}: true | undefined - Is the task a subtask *Not Required
+ * @param {index}: number - Index of the task in the child list *Not Required
+ * @param {lengthList}: number - Length of the child list *Not Required
+ * @param {hanlerDelete}: void - Callback for deleting the task from the list
+ * @param {handlerMoveUp}: void - Callback for moving the task up in the list
+ * @param {handlerMoveDown}: void - Callback for moving the task down in the list
  */
 const Bar : React.FC<TaskBarProps> = (
   { id, subTask, index, lengthList, handlerDelete, handleMoveUp, handleMoveDown } : TaskBarProps

@@ -1,10 +1,10 @@
 import { TaskList } from "../types"
 
 /**
- * Смена мест отображения двух компонентов задач 
- * @param data - Список задач где будет перемешиватся
- * @param index - Индекс задачи в списке 
- * @param moveTo - В каком напрвлении будет обмен местами
+ * Function to swap the position of two task components
+ * @param data - List of tasks to swap within
+ * @param index - Index of the task in the list
+ * @param moveTo - The direction in which to swap the tasks.
  */
 const replaceTasks = (data: TaskList, index: number, moveTo: "up" | "down") => {
   if (data.length > 0) {

@@ -4,9 +4,9 @@ import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 
 /**
- * React Component - для отображения заголовка задачи вместе с ее статусом
- * @param {text} : string - Загаловок задачи
- * @param {status} : "toDo" | "inProgress" | "done" - Статус задачи
+ * React Component - for displaying the title of the task together with its status
+ * @param {text} : string - Task title
+ * @param {status} : "toDo" | "inProgress" | "done" - Task status
  */
 const Title : React.FC<TaskTitleProps> = ({ text, status } : TaskTitleProps) => {
   return (

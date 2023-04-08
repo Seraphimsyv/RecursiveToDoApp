@@ -2,8 +2,8 @@ import * as React from "react";
 import { TaskContentProps } from "../../types";
 
 /**
- * React Component - Отрисовка контента задачи
- * @param {description} : string - Описание задачи
+ * React Component - Rendering the Content of a Task
+ * @param {description}: string - Description of the task
  */
 const Content : React.FC<TaskContentProps> = ({ description } : TaskContentProps ) => {
   return (

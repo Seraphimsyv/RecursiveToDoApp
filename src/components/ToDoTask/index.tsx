@@ -4,34 +4,35 @@ import { ToDoList } from "../ToDoList";
 import { Header } from "./Header";
 import { Content } from "./Content";
 import { TaskProps } from "../../types";
-import { dataTask } from "../../data/tasks";
-import { filterData } from "../../utils/filterData";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-
 /**
  * React Component - Rendering a task along with other components
  * Can be used as a standalone component, as well as a child component
  * @param {data} : Task - Task data
- * @param {subTask} : true | undefined - Whether the task is a child of another task *NotRequired
- * @param {index} : number - Index of the task in the child list *NotRequired
+ * @param {dataList} : Task[] - List of tasks
+ * @param {place} : number - Place of the task in the child list *NotRequired
  * @param {lengthList} : number - Length of the child list *NotRequired
- * @param {hanlerDelete} : void - Callback function for deleting a task from the list
+ * @param {handlerDelete} : void - Callback function for deleting a task from the list
  * @param {handlerMoveUp} : void - Callback function for moving a task up the list
  * @param {handlerMoveDown} : void - Callback function for moving a task down the list
  */
 const ToDoTask : React.FC<TaskProps> = (
-  { data, subTask, index, lengthList, handlerDelete, handleMoveUp, handleMoveDown } : TaskProps
+  {
+    data, dataList, place, lengthList,
+    handlerUpdate, handlerDelete,
+    handlerMoveUp, handlerMoveDown
+  } : TaskProps
 ) => {
   const [collapse, setCollapse] = useState(true);
 
   const HandlerMovement = (moveTo: "up" | "down") => {
     if (moveTo === "up") {
-      handleMoveUp();
+      handlerMoveUp(data, data.parentId);
     } else {
-      handleMoveDown();
+      handlerMoveDown(data, data.parentId);
     }
 
     setCollapse(true);
@@ -43,12 +44,11 @@ const ToDoTask : React.FC<TaskProps> = (
   };
   const barData = {
     id: data.id,
-    subTask: subTask,
-    index: index,
+    place: place,
     lengthList: lengthList,
     handlerDelete: handlerDelete,
-    handleMoveUp: () => HandlerMovement("up"),
-    handleMoveDown: () => HandlerMovement("down")
+    handlerMoveUp: () => HandlerMovement("up"),
+    handlerMoveDown: () => HandlerMovement("down")
   }
 
   return (
@@ -62,13 +62,20 @@ const ToDoTask : React.FC<TaskProps> = (
             <>
               <Content description={data.description} />
               <div className="card_sublist">
-                <ToDoList dataList={ filterData(dataTask, data.id) } subList parentId={data.id} status={data.status} />
+                <ToDoList
+                  dataList={dataList}
+                  parentId={data.id}
+                  handlerUpdate={handlerUpdate}
+                  handlerDelete={handlerDelete}
+                  handlerMoveUp={handlerMoveUp}
+                  handlerMoveDown={handlerMoveDown}
+                />
               </div>
             </>
           ) : null}
           <CardActions sx={{ display: "flex", justifyContent: "center" }} >
             <Button variant="contained" size="small"onClick={() => setCollapse(!collapse)}>
-              Show More
+              {collapse !== false ? "show more" : "hide"}
             </Button>
           </CardActions>
         </div>

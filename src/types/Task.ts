@@ -4,7 +4,7 @@ type Task = {
   status: "toDo" | "inProgress" | "done",
   description: string,
   parentId?: number,
-  index?: number
+  place: number
 };
 
 export type { Task }

@@ -10,15 +10,14 @@ import VerticalAlignBottomIcon from '@mui/icons-material/VerticalAlignBottom';
 /**
  * React Component - Rendering a Bar for the ToDoTask Component
  * @param {id}: number - ID of the task
- * @param {subTask}: true | undefined - Is the task a subtask *Not Required
- * @param {index}: number - Index of the task in the child list *Not Required
+ * @param {place}: number - Place of the task in the child list *Not Required
  * @param {lengthList}: number - Length of the child list *Not Required
- * @param {hanlerDelete}: void - Callback for deleting the task from the list
+ * @param {handlerDelete}: void - Callback for deleting the task from the list
  * @param {handlerMoveUp}: void - Callback for moving the task up in the list
  * @param {handlerMoveDown}: void - Callback for moving the task down in the list
  */
 const Bar : React.FC<TaskBarProps> = (
-  { id, subTask, index, lengthList, handlerDelete, handleMoveUp, handleMoveDown } : TaskBarProps
+  { id, place, lengthList, handlerDelete, handlerMoveUp, handlerMoveDown } : TaskBarProps
 ) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -33,10 +32,10 @@ const Bar : React.FC<TaskBarProps> = (
   return (
     <>
       <div className="card_bar">
-        <IconButton onClick={handleMoveUp} disabled={index === 0}>
+        <IconButton onClick={handlerMoveUp} disabled={place === 0}>
           <VerticalAlignTopIcon />
         </IconButton>
-        <IconButton onClick={handleMoveDown} disabled={index === lengthList}>
+        <IconButton onClick={handlerMoveDown} disabled={place === lengthList}>
           <VerticalAlignBottomIcon />
         </IconButton>
         <IconButton
@@ -52,7 +51,7 @@ const Bar : React.FC<TaskBarProps> = (
         >
           <MenuItem onClick={() => {
             HandlerClose();
-            handlerDelete();
+            handlerDelete(id);
           }}>Delete</MenuItem>
         </Menu>
       </div>

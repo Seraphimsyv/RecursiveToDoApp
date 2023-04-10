@@ -1,14 +1,14 @@
 import { Task } from "./Task"
-import { TaskList } from "./TaskList"
 
 type TaskProps = {
   data: Task,
-  subTask?: true,
-  index?: number,
-  lengthList?: number,
-  handlerDelete: () => void,
-  handleMoveUp: () => void,
-  handleMoveDown: () => void,
+  dataList: Task[],
+  place: number,
+  lengthList: number,
+  handlerUpdate: (task: Task) => void,
+  handlerDelete: (id: number) => void,
+  handlerMoveUp: (task: Task, parentId?: number) => void,
+  handlerMoveDown: (task: Task, parentId?: number) => void,
 }
 
 type TaskTitleProps = {
@@ -18,12 +18,11 @@ type TaskTitleProps = {
 
 type TaskBarProps = {
   id: number,
-  subTask?: true,
-  index?: number,
+  place: number,
   lengthList?: number,
-  handlerDelete: () => void,
-  handleMoveUp?: () => void,
-  handleMoveDown?: () => void,
+  handlerDelete: (id: number) => void,
+  handlerMoveUp: () => void,
+  handlerMoveDown: () => void,
 }
 
 type TaskHeaderProps = {
@@ -37,15 +36,17 @@ type TaskContentProps = {
 
 type ToDoListProps = {
   dataList: Task[],
-  subList?: true,
   parentId?: number,
-  status?: "toDo" | "inProgress" | "done"
+  handlerUpdate: (task: Task) => void,
+  handlerDelete: (id: number) => void,
+  handlerMoveUp: (task: Task, parentId?: number) => void,
+  handlerMoveDown: (task: Task, parentId?: number) => void,
 }
 
 type FormProps = {
   parentId?: number,
   dataList: Task[],
-  dataUpdate: (arr: TaskList) => void
+  dataUpdate: (task: Task) => void
 }
 
 export type { 

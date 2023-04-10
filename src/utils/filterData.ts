@@ -1,4 +1,4 @@
-import { Task, TaskList } from "../types"
+import { Task } from "../types"
 
 /**
  * React Component - Filter for displaying task list in different places
@@ -6,7 +6,7 @@ import { Task, TaskList } from "../types"
  * @param {parentId} - Parent id if the filtered list will be displayed as a child
  * @returns - Returns the filtered list
  */
-const filterData = (arr: TaskList, parentId?: number) => {
+const filterData = (arr: Task[], parentId?: number) => {
   if (parentId) {
     return arr.filter(( task: Task ) => task.parentId === parentId);
   } else {

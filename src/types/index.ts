@@ -1,5 +1,4 @@
 import { Task } from './Task';
-import { TaskList } from './TaskList';
 import {
   TaskProps,
   TaskTitleProps,
@@ -12,7 +11,6 @@ import {
 
 export type { 
   Task,
-  TaskList,
   TaskProps,
   TaskTitleProps,
   TaskBarProps,

@@ -19,27 +19,17 @@ const ToDoForm : React.FC<FormProps> = ({ parentId, dataList, dataUpdate } : For
   const [description, setDesc] = useState("");
 
   const SaveTask = (task: Task) => {
-    dataList.push(task);
-    dataUpdate(dataList);
+    dataUpdate(task);
   }
   const HandlerSaveTask = () => {
-    if (parentId !== undefined) {
-      SaveTask({
-        id: Math.floor(Math.random() * 100),
-        title: title, 
-        description: description,
-        status: 'toDo',
-        parentId: parentId,
-        index: filterData(dataList, parentId).length
-      });
-    } else {
-      SaveTask({
-        id: Math.floor(Math.random() * 100),
-        title: title, 
-        description: description,
-        status: 'toDo'
-      });
-    }
+    SaveTask({
+      id: Math.floor(Math.random() * 100),
+      title: title, 
+      description: description,
+      status: "toDo",
+      parentId: parentId,
+      place: filterData(dataList, parentId).length
+    });
     setTitle("");
     setDesc("");
   }

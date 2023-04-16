@@ -8,6 +8,7 @@ import { Task, ToDoListProps } from "../../types";
  * Can be used as a standalone component, as well as a child component
  * @param {dataList}: Task[] - List of tasks
  * @param {parentId}: number - ID of the task that is the parent component
+ * @param {handlerUpdate}: Callback - Data update function.
  */
 const ToDoList : React.FC<ToDoListProps> = ({
   dataList, parentId, handlerUpdate

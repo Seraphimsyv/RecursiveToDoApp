@@ -15,9 +15,7 @@ import Button from '@mui/material/Button';
  * @param {dataList} : Task[] - List of tasks
  * @param {place} : number - Place of the task in the child list *NotRequired
  * @param {lengthList} : number - Length of the child list *NotRequired
- * @param {handlerDelete} : void - Callback function for deleting a task from the list
- * @param {handlerMoveUp} : void - Callback function for moving a task up the list
- * @param {handlerMoveDown} : void - Callback function for moving a task down the list
+ * @param {handlerUpdate}: Callback - Data update function.
  */
 const ToDoTask : React.FC<TaskProps> = (
   {

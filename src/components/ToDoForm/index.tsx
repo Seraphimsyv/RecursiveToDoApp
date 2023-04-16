@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
  * Can be used as a standalone component, as well as a child component
  * @param {parentId}: number - ID of the parent task for creating child tasks *Not Required
  * @param {dataList}: TaskList - List of tasks to update data
- * @param {dataUpdate}: Function - Data update function.
+ * @param {handlerUpdate}: Callback - Data update function.
  */
 const ToDoForm : React.FC<FormProps> = ({ parentId, handlerUpdate } : FormProps) => {
   const [title, setTitle] = useState("");

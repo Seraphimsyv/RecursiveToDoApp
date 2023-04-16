@@ -18,8 +18,6 @@ const App : React.FC = () => {
     .then(res => setData(res));
   }
 
-  console.log(data)
-
   return (
     <>
       <ToDoList

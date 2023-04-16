@@ -12,7 +12,7 @@ import VerticalAlignBottomIcon from '@mui/icons-material/VerticalAlignBottom';
  * @param {id}: number - ID of the task
  * @param {place}: number - Place of the task in the child list *Not Required
  * @param {lengthList}: number - Length of the child list *Not Required
- * @param {handlerDelete}: void - Callback for deleting the task from the list
+ * @param {handlerUpdate}: Callback - Data update function.
  */
 const Bar : React.FC<TaskBarProps> = (
   { id, place, lengthList, handlerUpdate } : TaskBarProps

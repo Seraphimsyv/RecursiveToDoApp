@@ -20,9 +20,7 @@ const Header : React.FC<TaskHeaderProps> = ({ title, bar } : TaskHeaderProps) =>
           id={bar.id}
           place={bar.place}
           lengthList={bar.lengthList}
-          handlerDelete={bar.handlerDelete}
-          handlerMoveUp={bar.handlerMoveUp}
-          handlerMoveDown={bar.handlerMoveDown}
+          handlerUpdate={bar.handlerUpdate}
         />
       </div>
     </>

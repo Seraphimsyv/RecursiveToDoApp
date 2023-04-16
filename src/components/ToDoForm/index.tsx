@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { Task, FormProps } from "../../types";
-import { filterData } from "../../utils/filterData";
+import { FormProps } from "../../types";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -14,24 +13,26 @@ import Button from '@mui/material/Button';
  * @param {dataList}: TaskList - List of tasks to update data
  * @param {dataUpdate}: Function - Data update function.
  */
-const ToDoForm : React.FC<FormProps> = ({ parentId, dataList, dataUpdate } : FormProps) => {
+const ToDoForm : React.FC<FormProps> = ({ parentId, handlerUpdate } : FormProps) => {
   const [title, setTitle] = useState("");
   const [description, setDesc] = useState("");
 
-  const SaveTask = (task: Task) => {
-    dataUpdate(task);
-  }
   const HandlerSaveTask = () => {
-    SaveTask({
-      id: Math.floor(Math.random() * 100),
-      title: title, 
-      description: description,
-      status: "toDo",
-      parentId: parentId,
-      place: filterData(dataList, parentId).length
+    fetch('/tasks/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: title, 
+        description: description,
+        status: "toDo",
+        parentId: parentId
+      })
+    })
+    .then(res => {
+      setTitle("");
+      setDesc("");
+      handlerUpdate();
     });
-    setTitle("");
-    setDesc("");
   }
 
   return (

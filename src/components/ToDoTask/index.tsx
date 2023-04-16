@@ -21,22 +21,11 @@ import Button from '@mui/material/Button';
  */
 const ToDoTask : React.FC<TaskProps> = (
   {
-    data, dataList, place, lengthList,
-    handlerUpdate, handlerDelete,
-    handlerMoveUp, handlerMoveDown
+    data, dataList, place, 
+    lengthList, handlerUpdate
   } : TaskProps
 ) => {
   const [collapse, setCollapse] = useState(true);
-
-  const HandlerMovement = (moveTo: "up" | "down") => {
-    if (moveTo === "up") {
-      handlerMoveUp(data, data.parentId);
-    } else {
-      handlerMoveDown(data, data.parentId);
-    }
-
-    setCollapse(true);
-  }
 
   const titleData = {
     text: data.title,
@@ -46,9 +35,7 @@ const ToDoTask : React.FC<TaskProps> = (
     id: data.id,
     place: place,
     lengthList: lengthList,
-    handlerDelete: handlerDelete,
-    handlerMoveUp: () => HandlerMovement("up"),
-    handlerMoveDown: () => HandlerMovement("down")
+    handlerUpdate: handlerUpdate
   }
 
   return (
@@ -66,9 +53,6 @@ const ToDoTask : React.FC<TaskProps> = (
                   dataList={dataList}
                   parentId={data.id}
                   handlerUpdate={handlerUpdate}
-                  handlerDelete={handlerDelete}
-                  handlerMoveUp={handlerMoveUp}
-                  handlerMoveDown={handlerMoveDown}
                 />
               </div>
             </>

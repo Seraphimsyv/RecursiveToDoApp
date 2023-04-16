@@ -1,55 +1,57 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { ToDoTask } from "../ToDoTask";
 import { ToDoForm } from "../ToDoForm";
 import { Task, ToDoListProps } from "../../types";
-import { filterData } from "../../utils/filterData";
-
 /**
  * React Component - Rendering Task List
  * Can be used as a standalone component, as well as a child component
  * @param {dataList}: Task[] - List of tasks
  * @param {parentId}: number - ID of the task that is the parent component
  */
-const ToDoList : React.FC<ToDoListProps> = (
-  {
-    dataList, parentId,
-    handlerUpdate, handlerDelete,
-    handlerMoveUp, handlerMoveDown
-  } : ToDoListProps
-) => {
-  const newData = filterData(dataList, parentId)
-    .sort((a: Task, b: Task) => {
-      if (a.place > b.place) {
-        return 1; }
-      if (a.place < b.place) {
-        return -1; }
-      return 0;
-    });
+const ToDoList : React.FC<ToDoListProps> = ({
+  dataList, parentId, handlerUpdate
+} : ToDoListProps) => {
+  const [data, setData] = useState<Task[]>([]);
 
+  useEffect(() => {
+    if(parentId !== undefined) {
+      fetch(`/tasks/${parentId}`)
+      .then(res => res.json())
+      .then(res => setData(res));
+    } else {
+      setData(dataList);
+    }
+  }, [parentId, dataList])
+  
   return (
     <>
-      {(
+      {parentId !== undefined ? null : (
         <>
           <ToDoForm
             parentId={parentId}
-            dataList={newData}
-            dataUpdate={handlerUpdate}
+            handlerUpdate={handlerUpdate}
           />
         </>
       )}
-      {newData.map((task, key) => (
+      {data.map((task, key) => (
         <ToDoTask
-          dataList={dataList}
+          dataList={data}
           key={key}
           data={task}
           place={task.place}
-          lengthList={newData.length-1}
+          lengthList={data.length-1}
           handlerUpdate={handlerUpdate}
-          handlerDelete={handlerDelete}
-          handlerMoveUp={handlerMoveUp}
-          handlerMoveDown={handlerMoveDown}
         />
       ))}
+      {parentId !== undefined ? (
+        <>
+          <ToDoForm
+            parentId={parentId}
+            handlerUpdate={handlerUpdate}
+          />
+        </>
+      ) : null}
     </>
   )
 }

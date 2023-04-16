@@ -5,10 +5,7 @@ type TaskProps = {
   dataList: Task[],
   place: number,
   lengthList: number,
-  handlerUpdate: (task: Task) => void,
-  handlerDelete: (id: number) => void,
-  handlerMoveUp: (task: Task, parentId?: number) => void,
-  handlerMoveDown: (task: Task, parentId?: number) => void,
+  handlerUpdate: () => void
 }
 
 type TaskTitleProps = {
@@ -19,10 +16,8 @@ type TaskTitleProps = {
 type TaskBarProps = {
   id: number,
   place: number,
-  lengthList?: number,
-  handlerDelete: (id: number) => void,
-  handlerMoveUp: () => void,
-  handlerMoveDown: () => void,
+  lengthList: number,
+  handlerUpdate: () => void
 }
 
 type TaskHeaderProps = {
@@ -37,16 +32,12 @@ type TaskContentProps = {
 type ToDoListProps = {
   dataList: Task[],
   parentId?: number,
-  handlerUpdate: (task: Task) => void,
-  handlerDelete: (id: number) => void,
-  handlerMoveUp: (task: Task, parentId?: number) => void,
-  handlerMoveDown: (task: Task, parentId?: number) => void,
+  handlerUpdate: () => void
 }
 
 type FormProps = {
   parentId?: number,
-  dataList: Task[],
-  dataUpdate: (task: Task) => void
+  handlerUpdate: () => void
 }
 
 export type { 

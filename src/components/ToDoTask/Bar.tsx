@@ -1,4 +1,5 @@
 import * as React from "react";
+import { TaskService } from "../../service/TaskService";
 import { TaskBarProps } from "../../types";
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -9,30 +10,20 @@ import VerticalAlignBottomIcon from '@mui/icons-material/VerticalAlignBottom';
 
 /**
  * React Component - Rendering a Bar for the ToDoTask Component
- * @param {id}: number - ID of the task
- * @param {place}: number - Place of the task in the child list *Not Required
- * @param {lengthList}: number - Length of the child list *Not Required
- * @param {handlerUpdate}: Callback - Data update function.
+ * @param id ID of the task
+ * @param place Place of the task in the child list
+ * @param lengthList Length of the child list
+ * @param handlerUpdate Data update function.
  */
-const Bar : React.FC<TaskBarProps> = (
-  { id, place, lengthList, handlerUpdate } : TaskBarProps
-) => {
+const Bar : React.FC<TaskBarProps> = ( props : TaskBarProps ) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const HandlerDelete = () => {
-    fetch(`/tasks/${id}`, { method: 'DELETE' })
-    .then(res => handlerUpdate());
+    TaskService.delete( props.id, props.handlerUpdate );
   }
-  const HandlerMove = (moveTo : "up" | "down") => {
-    fetch(`/tasks`, {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id: id, moveTo: moveTo
-      })
-    })
-    .then(res => handlerUpdate());
+  const HandlerMove = ( moveTo: 0 | 1 ) => {
+    TaskService.swapp( { id: props.id, moveTo: moveTo }, props.handlerUpdate );
   }
   const HandlerClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -44,10 +35,16 @@ const Bar : React.FC<TaskBarProps> = (
   return (
     <>
       <div className="card_bar">
-        <IconButton onClick={() => HandlerMove("up")} disabled={place <= 0}>
+        <IconButton
+          onClick={() => HandlerMove(0)}
+          disabled={props.place === 0 || props.lengthList === 1}
+        >
           <VerticalAlignTopIcon />
         </IconButton>
-        <IconButton onClick={() => HandlerMove("down")} disabled={place >= lengthList}>
+        <IconButton
+          onClick={() => HandlerMove(1)}
+          disabled={props.place === props.lengthList || props.lengthList === 1}
+        >
           <VerticalAlignBottomIcon />
         </IconButton>
         <IconButton

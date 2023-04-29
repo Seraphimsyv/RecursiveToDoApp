@@ -6,7 +6,7 @@ import {
   TaskHeaderProps,
   TaskContentProps,
   ToDoListProps,
-  FormProps
+  ToDoFormProps
 } from './PropsTypes';
 
 export type { 
@@ -17,5 +17,5 @@ export type {
   TaskHeaderProps,
   TaskContentProps,
   ToDoListProps,
-  FormProps
+  ToDoFormProps
 }

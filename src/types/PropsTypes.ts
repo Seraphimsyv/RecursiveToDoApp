@@ -1,23 +1,23 @@
+import { Dispatch, SetStateAction } from "react"
 import { Task } from "./Task"
 
 type TaskProps = {
   data: Task,
-  dataList: Task[],
   place: number,
   lengthList: number,
-  handlerUpdate: () => void
+  handlerUpdate: Dispatch<SetStateAction<Task[]>>
 }
 
 type TaskTitleProps = {
   text: string,
-  status: "toDo" | "inProgress" | "done"
+  status: 0 | 1 | 2
 }
 
 type TaskBarProps = {
   id: number,
   place: number,
   lengthList: number,
-  handlerUpdate: () => void
+  handlerUpdate: Dispatch<SetStateAction<Task[]>>
 }
 
 type TaskHeaderProps = {
@@ -30,14 +30,12 @@ type TaskContentProps = {
 }
 
 type ToDoListProps = {
-  dataList: Task[],
   parentId?: number,
-  handlerUpdate: () => void
 }
 
-type FormProps = {
+type ToDoFormProps = {
   parentId?: number,
-  handlerUpdate: () => void
+  handlerUpdate: Dispatch<SetStateAction<Task[]>>,
 }
 
 export type { 
@@ -47,5 +45,5 @@ export type {
   TaskHeaderProps,
   TaskContentProps,
   ToDoListProps,
-  FormProps
+  ToDoFormProps
 }

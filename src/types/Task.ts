@@ -1,7 +1,7 @@
 type Task = {
   id: number,
   title: string,
-  status: "toDo" | "inProgress" | "done",
+  status: 0 | 1 | 2,
   description: string,
   parentId?: number,
   place: number

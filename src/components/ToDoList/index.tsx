@@ -1,55 +1,45 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import { TaskService } from "../../service/TaskService";
 import { ToDoTask } from "../ToDoTask";
 import { ToDoForm } from "../ToDoForm";
 import { Task, ToDoListProps } from "../../types";
 /**
  * React Component - Rendering Task List
  * Can be used as a standalone component, as well as a child component
- * @param {dataList}: Task[] - List of tasks
- * @param {parentId}: number - ID of the task that is the parent component
- * @param {handlerUpdate}: Callback - Data update function.
+ * @param parentId number - ID of the task that is the parent component
  */
-const ToDoList : React.FC<ToDoListProps> = ({
-  dataList, parentId, handlerUpdate
-} : ToDoListProps) => {
+const ToDoList : React.FC<ToDoListProps> = ( props : ToDoListProps) => {
   const [data, setData] = useState<Task[]>([]);
 
   useEffect(() => {
-    if(parentId !== undefined) {
-      fetch(`/tasks/${parentId}`)
-      .then(res => res.json())
-      .then(res => setData(res));
-    } else {
-      setData(dataList);
-    }
-  }, [parentId, dataList])
+    TaskService.update(setData, props.parentId);
+  }, [props.parentId])
   
   return (
     <>
-      {parentId !== undefined ? null : (
+      {props.parentId !== undefined ? null : (
         <>
           <ToDoForm
-            parentId={parentId}
-            handlerUpdate={handlerUpdate}
+            parentId={props.parentId}
+            handlerUpdate={setData}
           />
         </>
       )}
       {data.map((task, key) => (
         <ToDoTask
-          dataList={data}
           key={key}
           data={task}
           place={task.place}
           lengthList={data.length-1}
-          handlerUpdate={handlerUpdate}
+          handlerUpdate={setData}
         />
       ))}
-      {parentId !== undefined ? (
+      {props.parentId !== undefined ? (
         <>
           <ToDoForm
-            parentId={parentId}
-            handlerUpdate={handlerUpdate}
+            parentId={props.parentId}
+            handlerUpdate={setData}
           />
         </>
       ) : null}

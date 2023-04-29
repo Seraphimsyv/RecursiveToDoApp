@@ -3,9 +3,9 @@ import { TaskContentProps } from "../../types";
 
 /**
  * React Component - Rendering the Content of a Task
- * @param {description}: string - Description of the task
+ * @param description Description of the task
  */
-const Content : React.FC<TaskContentProps> = ({ description } : TaskContentProps ) => {
+const Content : React.FC<TaskContentProps> = ( { description } : TaskContentProps ) => {
   return (
     <>
       <div className="card_content">

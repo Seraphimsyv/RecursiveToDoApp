@@ -11,29 +11,23 @@ import Button from '@mui/material/Button';
 /**
  * React Component - Rendering a task along with other components
  * Can be used as a standalone component, as well as a child component
- * @param {data} : Task - Task data
- * @param {dataList} : Task[] - List of tasks
- * @param {place} : number - Place of the task in the child list *NotRequired
- * @param {lengthList} : number - Length of the child list *NotRequired
- * @param {handlerUpdate}: Callback - Data update function.
+ * @param data Task data
+ * @param place Place of the task in the child list
+ * @param lengthList Length of the child list
+ * @param handlerUpdate Data update function.
  */
-const ToDoTask : React.FC<TaskProps> = (
-  {
-    data, dataList, place, 
-    lengthList, handlerUpdate
-  } : TaskProps
-) => {
+const ToDoTask : React.FC<TaskProps> = ( props ) => {
   const [collapse, setCollapse] = useState(true);
 
   const titleData = {
-    text: data.title,
-    status: data.status
+    text: props.data.title,
+    status: props.data.status
   };
   const barData = {
-    id: data.id,
-    place: place,
-    lengthList: lengthList,
-    handlerUpdate: handlerUpdate
+    id: props.data.id,
+    place: props.place,
+    lengthList: props.lengthList,
+    handlerUpdate: props.handlerUpdate
   }
 
   return (
@@ -45,12 +39,10 @@ const ToDoTask : React.FC<TaskProps> = (
           <Header title={titleData} bar={barData} />
           {collapse === false ? (
             <>
-              <Content description={data.description} />
+              <Content description={props.data.description} />
               <div className="card_sublist">
                 <ToDoList
-                  dataList={dataList}
-                  parentId={data.id}
-                  handlerUpdate={handlerUpdate}
+                  parentId={props.data.id}
                 />
               </div>
             </>

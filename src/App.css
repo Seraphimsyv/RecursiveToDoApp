@@ -1,38 +1,46 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
   min-height: 100vh;
+  background-color: whitesmoke;
+}
+
+#root {
+  height: 100%;
+}
+
+#to_do_task_list {
+  height: 100%;
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.to_do_task_card {
+  width: auto;
+  margin: 1em;
+  box-shadow: 1px 1px 3px rgb(92, 92, 92)!important;
+}
+
+/** Task>Header **/
+.card_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/** Task>Header>Title **/
+.card_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 75%;
+}
+
+.status_to_do,
+.status_progress,
+.status_done {
+  padding: 1px;
+  background-color: black;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/** Task>Header>Bar **/
